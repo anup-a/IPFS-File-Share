@@ -1,0 +1,20 @@
+<% include partials/header %>
+<div class="container">
+
+    <div class="form-container">
+        <p class="form-title">Upload & Share File</p>
+        <hr class="account-form__line">
+        <form ref='uploadForm' id='uploadForm' action='/addfile/<%= id %>' method='post' encType="multipart/form-data">
+            <div class="form-group">
+                <label>Choose File</label>
+                <input class="form-text" autofocus type="file" name="sampleFile" placeholder="FileName">
+            </div>
+            <button type="submit" class="btn btn-new btn-large shadow">Upload</button>
+            <span style="margin:0px 40px">
+            </span>
+            <hr class="account-form__line">
+            <a class="btn btn-new-2 btn-large shadow" href="../all/<%= id %>">My Files</a>
+        </form>
+    </div>
+</div>
+<% include partials/footer %>

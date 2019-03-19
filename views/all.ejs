@@ -1,0 +1,71 @@
+<% include partials/header %>
+
+<div class="container" style="max-width:60%">
+    <br>
+    <br>
+    <br>
+    <h2><b>
+            <center>MY FILES</center>
+        </b></h2>
+    <hr>
+    <br>
+    <ul class="list-group shadow">
+        <% fileArray.forEach(function(file){ %>
+        <li class="list-group-item" style="padding:15px">
+            File Name - <b style="text-transform: uppercase;">
+                <%= file.name %></b>
+            <a target="_blank" style="float:right" data-toggle="tooltip" data-placement="top" title="Download" class="btn border-gradient border-gradient-purple"
+                href="https://gateway.ipfs.io/ipfs/<%= file.path %>"><i class="fas fa-download"></i></a>
+
+            <a style="float:right" data-toggle="modal" href="#share" data-book-id="https://gateway.ipfs.io/ipfs/<%= file.path %>" class="btn border-gradient border-gradient-purple"><i
+                    style="font-size: 1.2rem" class="fas fa-share-alt-square"></i></a>
+            <br>
+            Hash - <code>|
+                <%= file.path %>|</code>
+
+        </li>
+        <% }); %>
+    </ul>
+</div>
+
+<div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle">Share with your Friends</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="/send-email" method="POST">
+                        <div class="form-group">
+                            <label>To:</label>
+                            <input type="email" class="form-control" name="to">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <input type="text" class="form-control" name="subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="body">Body:</label>
+                            <textarea cols="5" rows="5"class="form-control" name="body1" value=""></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-new btn-large shadow">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script>
+    $('#share').on('show.bs.modal', function(e) {
+    var bookId = $(e.relatedTarget).data('book-id');
+    $(e.currentTarget).find('textarea[name="body1"]').val("Hey, here is the link of file -"+bookId);
+});
+</script>
+<% include partials/footer %>

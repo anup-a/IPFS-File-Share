@@ -1,0 +1,38 @@
+<% include partials/header %>
+    <div class="container">
+        <div class="form-container">
+            <p class="form-title">Register</p>
+            <hr class="account-form__line">
+
+            <form action="/register" method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Name</label>
+                        <input class="form-text" type="text" name="name" placeholder="Enter Full Name">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label>Username</label>
+                        <input class="form-text" type="text" name="username" placeholder="Enter Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label>Email Address</label>
+                        <input class="form-text" type="email" name="email_x" placeholder="Enter Email-Id">
+                    </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-text" type="password" name="password" placeholder="Create Password">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input class="form-text" type="password" name="c_password" placeholder="Confirm Password">
+                </div>
+                <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="6LdjLJgUAAAAAHa1h1_5b_GZ5YXeV4wXG038XFs9"></div>
+                  </div>
+                <button type="submit" class="btn btn-new btn-large shadow">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <% include partials/footer %>
